@@ -1,8 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
-:root{
 
+:root{
+  --color-primary: #fff;
+  --color-secondary: #00000091;
+  --box-shadow: rgba(0, 0, 0, 0.2);
 }
 
 html {
@@ -19,7 +22,7 @@ body, h1, h2, h3, h4, h5, h6, p, ol, ul, label {
   padding: 0;
   font-weight: normal;
   font-family: "Roboto", sans-serif;
-  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 ol, ul {

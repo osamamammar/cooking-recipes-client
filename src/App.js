@@ -1,4 +1,4 @@
-import GlobalStyles from "./GlobalStyles";
+import GlobalStyles from "./globalStyles";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { LandingPage } from "./screens";
 import { Footer, Header } from "./components";
