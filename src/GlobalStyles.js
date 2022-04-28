@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
 :root{
- 
+
 }
 
 html {
@@ -20,10 +20,6 @@ body, h1, h2, h3, h4, h5, h6, p, ol, ul, label {
   font-weight: normal;
   font-family: "Roboto", sans-serif;
   overflow-wrap: break-word;
-
-}
-
-body{
 }
 
 ol, ul {

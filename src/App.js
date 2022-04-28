@@ -1,16 +1,20 @@
-import GlobalStyles from "./globalStyles";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import GlobalStyles from "./GlobalStyles";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { LandingPage } from "./screens";
+import { Footer, Header } from "./components";
 
 function App() {
   return (
     <>
       <GlobalStyles></GlobalStyles>
-      <BrowserRouter>
+      <Router>
+        <Header></Header>
         <Routes>
-          <Route path="/" />
+          <Route path="/" element={<LandingPage />} />
           <Route path="*" />
         </Routes>
-      </BrowserRouter>
+        <Footer></Footer>
+      </Router>
     </>
   );
 }
