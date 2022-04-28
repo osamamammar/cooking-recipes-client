@@ -26,6 +26,7 @@ export const DishImage = styled.img`
       transition: all 0.3s ease-in-out;
       &:hover {
         filter: none;
+        opacity: 0.6;
       }
     }
   }

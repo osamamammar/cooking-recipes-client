@@ -8,29 +8,31 @@ import {
   StyledLink,
 } from "./Card.styles";
 
-const Card = () => {
+const Card = ({ recipe }) => {
   return (
-    <Recipe>
-      <StyledLink to={"/"}>
-        <DishImage
-          src="https://www.bbcgoodfoodme.com/wp-content/uploads/2022/04/Myrra-Food-photography33079-768x512.jpg"
-          alt="dish image"
-          width={300}
-          height={200}
-          loading="lazy"
-          title="dish image"
-        />
-        <DivWrapper>
-          <CardTitle>Lorem ipsum dolor</CardTitle>
-          <CardDescription>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-            nisi doloribus veniam deserunt dolore quidem enim, molestias
-            reprehenderit. Sapiente, earum laudantium! Ex ipsam sint earum quia
-            ea ut eveniet odit?
-          </CardDescription>
-        </DivWrapper>
-      </StyledLink>
-    </Recipe>
+    <>
+      <Recipe>
+        <StyledLink to={`/recipe/${recipe._id}`}>
+          <DishImage
+            src={recipe.dish_img}
+            alt="dish image"
+            width={300}
+            height={200}
+            loading="lazy"
+            title="dish image"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src =
+                "https://fooduncut.com/wp-content/uploads/2021/08/Chinese-Cooking-Hacks.jpg";
+            }}
+          />
+          <DivWrapper>
+            <CardTitle>{recipe.title}</CardTitle>
+            <CardDescription>{recipe.description}</CardDescription>
+          </DivWrapper>
+        </StyledLink>
+      </Recipe>
+    </>
   );
 };
 
