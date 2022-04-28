@@ -24,6 +24,7 @@ export const DishImage = styled.img`
     @media (max-width: 1105px) {
       opacity: 0.2;
       filter: blur(1.5px);
+      transition: all 0.3s ease-in-out;
       &:hover {
         filter: none;
       }
