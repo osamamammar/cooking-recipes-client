@@ -11,7 +11,10 @@ const GlobalStyles = createGlobalStyle`
 html {
   box-sizing: border-box;
   font-size: 16px;
+  /* overflow: scroll; */
+  overscroll-behavior: contain;
 }
+
 
 *, *:before, *:after {
   box-sizing: inherit;
@@ -46,6 +49,12 @@ img {
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+#root{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 `;

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 export const StyledLink = styled(Link)`
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
   gap: 18px;

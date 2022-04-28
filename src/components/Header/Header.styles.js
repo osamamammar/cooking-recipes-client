@@ -5,7 +5,6 @@ export const HeaderWrapper = styled.header`
   margin-block: 0;
   max-width: 1220px;
   width: 75%;
-  padding-block: 15px;
   @media (max-width: 768px) {
     width: 90%;
   }
@@ -15,6 +14,7 @@ export const DivWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-block-start: 15px;
 `;
 export const StyledLink = styled(Link)`
   display: inline-flex;

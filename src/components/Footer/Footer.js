@@ -1,7 +1,12 @@
 import React from "react";
+import { FooterContainer } from "./Footer.styles";
 
 const Footer = () => {
-  return <div>Footer</div>;
+  return (
+    <FooterContainer>
+      <p>&copy; 2022 Cooking Recipes</p>
+    </FooterContainer>
+  );
 };
 
 export default Footer;
