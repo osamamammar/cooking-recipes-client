@@ -48,6 +48,22 @@ img {
   white-space: nowrap;
   width: 1px;
 }
+.btn{
+  display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    gap: 5px;
+    padding-inline: 22px;
+    padding-block: 8px;
+    color: white;
+    cursor: pointer;
+    max-height: 31px;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      opacity: 0.8;
+    }
+}
 
 #root{
   display: flex;

@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 
-const useAxiosFetch = (urlApi) => {
+const useAxiosFetch = (urlApi, requestType) => {
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
@@ -10,10 +10,13 @@ const useAxiosFetch = (urlApi) => {
   useEffect(() => {
     let isMounted = true;
 
-    const fetchData = async (url) => {
+    const fetchData = async (url, method) => {
       setLoading(true);
       try {
-        const { data } = await axios.get(url);
+        const { data } = await axios({
+          method: method,
+          url,
+        });
         if (isMounted) {
           setData(data);
           setError(null);
@@ -28,14 +31,14 @@ const useAxiosFetch = (urlApi) => {
       }
     };
 
-    fetchData(urlApi);
+    fetchData(urlApi, requestType);
 
     const cleanUp = () => {
       isMounted = false;
     };
 
     return cleanUp;
-  }, [urlApi]);
+  }, [urlApi, requestType]);
 
   return { data, loading, error };
 };

@@ -1,16 +1,5 @@
 import styled from "styled-components";
 
-export const DivWrapper = styled.div`
-  display: grid;
-  grid-template-columns: minmax(100px, 1fr) 1fr;
-  justify-items: flex-start;
-  align-items: flex-start;
-  gap: 25px;
-  @media (max-width: 907px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
 export const DishImage = styled.img`
   object-fit: cover;
   align-self: stretch;
@@ -18,6 +7,12 @@ export const DishImage = styled.img`
   position: sticky;
   inset-block-start: 20px;
   align-self: flex-start;
+  border-radius: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+  :hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
   @media (max-width: 907px) {
     position: unset;
     max-height: 200px;
@@ -30,19 +25,26 @@ export const RecipeContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 10px;
-  /* margin-inline-start: 20px; */
 `;
 
 export const RecipeTitle = styled.h3`
   font-size: 38px;
   font-weight: bold;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
 `;
 export const RecipeSubTitle = styled.h4`
   font-size: 20px;
   font-weight: bold;
+  :hover {
+    opacity: 0.7;
+  }
 `;
-export const IngredientList = styled.ol`
-  list-style: number;
+export const IngredientList = styled.ul`
+  list-style: square;
   list-style-position: inside;
 `;
 export const RecipeDescription = styled.p`

@@ -5,7 +5,7 @@ export const HeaderWrapper = styled.header`
   margin-block: 0;
   max-width: 1220px;
   width: 75%;
-  @media (max-width: 768px) {
+  @media (max-width: 1180px) {
     width: 90%;
   }
 `;

@@ -1,7 +1,6 @@
 import React from "react";
 import {
   DishImage,
-  DivWrapper,
   IngredientList,
   RecipeContainer,
   RecipeDescription,
@@ -11,7 +10,7 @@ import {
 
 const RecipeDetails = ({ data }) => {
   return (
-    <DivWrapper>
+    <>
       <DishImage
         src={data && data.dish_img}
         alt={data && data.title}
@@ -26,7 +25,7 @@ const RecipeDetails = ({ data }) => {
         height={266}
       />
       <RecipeContainer>
-        <RecipeTitle>Recipe Name</RecipeTitle>
+        <RecipeTitle>{data && data.title}</RecipeTitle>
         <RecipeSubTitle>Ingrediants:</RecipeSubTitle>
 
         <IngredientList>
@@ -39,14 +38,13 @@ const RecipeDetails = ({ data }) => {
 
         <RecipeSubTitle>Description:</RecipeSubTitle>
         <RecipeDescription>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id,
-          repellendus accusantium hic iure quam exercitationem incidunt expedita
-          fugit sequi voluptate perferendis corrupti laboriosam dicta. Aliquid
-          voluptatum numquam sed a adipisci? Lorem ipsum dolor, sit amet
-          consectetur adipisicing elit. Id, repellendus
+          {data && data.description && data.description.length > 0
+            ? data.description
+            : "there is no description"}
+          {console.log(data && data.description && data.description.length)}
         </RecipeDescription>
       </RecipeContainer>
-    </DivWrapper>
+    </>
   );
 };
 
