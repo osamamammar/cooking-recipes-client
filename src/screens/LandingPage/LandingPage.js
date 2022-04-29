@@ -1,11 +1,7 @@
 import React from "react";
-import { Card } from "../../components";
+import { Card, Container } from "../../components";
 import { useAxiosFetch } from "../../hooks";
-import {
-  CardsContainer,
-  MainContainer,
-  SectionContainer,
-} from "./LandingPage.styles";
+import { CardsContainer, SectionContainer } from "./LandingPage.styles";
 
 const LandingPage = () => {
   const { data, loading, error } = useAxiosFetch(
@@ -15,7 +11,7 @@ const LandingPage = () => {
   console.log(data);
   return (
     <>
-      <MainContainer>
+      <Container>
         <SectionContainer>
           <CardsContainer>
             {loading ? (
@@ -32,7 +28,7 @@ const LandingPage = () => {
             )}
           </CardsContainer>
         </SectionContainer>
-      </MainContainer>
+      </Container>
     </>
   );
 };

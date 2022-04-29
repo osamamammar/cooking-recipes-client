@@ -20,7 +20,7 @@ const useAxiosFetch = (urlApi) => {
         }
       } catch (error) {
         if (isMounted) {
-          setError(error.message);
+          setError(error.response.data.message);
           setData([]);
         }
       } finally {

@@ -59,6 +59,17 @@ export const DivWrapper = styled.div`
   max-width: 400px;
   color: var(--color-primary);
   gap: 10px;
+  margin-block: 20px;
+  margin-inline: 10px;
+
+  /* TEXT-TRUNCATION */
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  overflow-wrap: normal;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  overflow: hidden;
 
   @media (max-width: 1105px) {
     z-index: 100;
@@ -67,15 +78,9 @@ export const DivWrapper = styled.div`
     inset-block-end: 12px;
     padding-inline: 10px;
     pointer-events: none;
-
-    /* TEXT-TRUNCATION */
-    display: -webkit-box;
-    text-overflow: ellipsis;
-    overflow-wrap: normal;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    white-space: normal;
-    overflow: hidden;
+  }
+  @media (max-width: 428px) {
+    -webkit-line-clamp: 3;
   }
 `;
 
