@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import Loader from "../Loader/Loader";
 
 const CTABtn = ({ id }) => {
   const navigate = useNavigate();
@@ -41,8 +42,19 @@ const CTABtn = ({ id }) => {
           />
         </Link>
         <button onClick={deleteRecipe} className="btn" title="delete recipe">
-          Delete
-          <img src={trash} alt="delete recipe icon" width={12} height={13} />
+          {isDeleting ? (
+            <>Deleting...</>
+          ) : (
+            <>
+              Delete
+              <img
+                src={trash}
+                alt="delete recipe icon"
+                width={12}
+                height={13}
+              />
+            </>
+          )}
         </button>
       </DivWrapper>
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
