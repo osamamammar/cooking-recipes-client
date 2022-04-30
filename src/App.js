@@ -1,4 +1,4 @@
-import GlobalStyles from "./globalStyles";
+import GlobalStyle from "./GlobalStyle";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {
   AddNewRecipePage,
@@ -11,7 +11,7 @@ import { Footer, Header } from "./components";
 function App() {
   return (
     <>
-      <GlobalStyles></GlobalStyles>
+      <GlobalStyle></GlobalStyle>
       <Router>
         <Header></Header>
         <Routes>

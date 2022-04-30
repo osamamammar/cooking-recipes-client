@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyles = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
 
 :root{
   --color-primary: #fff;
@@ -76,4 +76,4 @@ img {
 }
 `;
 
-export default GlobalStyles;
+export default GlobalStyle;
