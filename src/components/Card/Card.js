@@ -28,7 +28,9 @@ const Card = ({ recipe }) => {
           />
           <DivWrapper>
             <CardTitle>{recipe.title}</CardTitle>
-            <CardDescription>{recipe.description}</CardDescription>
+            <CardDescription>
+              {recipe.description.split("@").join(" ")}
+            </CardDescription>
           </DivWrapper>
         </StyledLink>
       </Recipe>

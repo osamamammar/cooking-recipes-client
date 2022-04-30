@@ -32,17 +32,30 @@ const RecipeDetails = ({ data }) => {
           {data &&
             data.ingredients &&
             data.ingredients
-              .split(",")
-              .map((ingredient, index) => <li key={index}>{ingredient}</li>)}
+              .split("@")
+              .map(
+                (ingredient, index) =>
+                  ingredient.length > 0 && <li key={index}>{ingredient}</li>
+              )}
         </IngredientList>
 
         <RecipeSubTitle>Description:</RecipeSubTitle>
-        <RecipeDescription>
-          {data && data.description && data.description.length > 0
-            ? data.description
-            : "there is no description"}
-          {console.log(data && data.description && data.description.length)}
-        </RecipeDescription>
+        <ol style={{ listStyle: "auto", listStylePosition: "inside" }}>
+          {data && data.description && data.description.length > 0 ? (
+            data.description.split("@").map(
+              (description, index) =>
+                description.length > 0 && (
+                  <li key={index}>
+                    <RecipeDescription style={{ display: "inline" }}>
+                      {description}
+                    </RecipeDescription>
+                  </li>
+                )
+            )
+          ) : (
+            <RecipeDescription>There is No description</RecipeDescription>
+          )}
+        </ol>
       </RecipeContainer>
     </>
   );
