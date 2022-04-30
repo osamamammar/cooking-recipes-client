@@ -14,7 +14,7 @@ const Card = ({ recipe }) => {
       <Recipe>
         <StyledLink to={`/recipe/${recipe._id}`}>
           <DishImage
-            src={recipe.dish_img}
+            src={`${process.env.REACT_APP_API_URL}/images/${recipe.image}`}
             alt="dish image"
             width={300}
             height={200}

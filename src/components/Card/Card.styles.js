@@ -84,7 +84,7 @@ export const DivWrapper = styled.div`
   }
 `;
 
-export const CardTitle = styled.h3`
+export const CardTitle = styled.h4`
   font-size: 20px;
   font-weight: bold;
 `;

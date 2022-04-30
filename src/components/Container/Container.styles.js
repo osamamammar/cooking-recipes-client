@@ -14,5 +14,9 @@ export const MainContainer = styled.main`
 `;
 export const MainWrapper = styled(MainContainer)`
   margin-block: unset;
-  margin-block-start: 100px;
+  margin-block-start: ${({ marginBlockStart }) =>
+    marginBlockStart ? marginBlockStart : "100px"};
+  @media (max-width: 466px) {
+    width: ${({ width }) => width && width};
+  }
 `;

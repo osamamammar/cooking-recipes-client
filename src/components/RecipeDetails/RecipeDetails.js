@@ -12,7 +12,7 @@ const RecipeDetails = ({ data }) => {
   return (
     <>
       <DishImage
-        src={data && data.dish_img}
+        src={`${process.env.REACT_APP_API_URL}/images/${data && data.dish_img}`}
         alt={data && data.title}
         title={`${data && data.title}`}
         onError={(e) => {

@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const ErrorContainer = styled.div`
   width: 100%;
-  margin-block-start: 40px;
+  margin-block-start: ${({ marginBlockStart }) =>
+    marginBlockStart ? marginBlockStart : "40px"};
   text-align: center;
   background-color: #f8d7da;
   border-color: #f5c6cb;

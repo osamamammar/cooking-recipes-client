@@ -8,3 +8,4 @@ export { default as Alert } from "./Alert/Alert";
 export { default as Loader } from "./Loader/Loader";
 export { default as CTABtn } from "./CTABtn/CTABtn";
 export { default as ErrorMessage } from "./ErrorMessage/ErrorMessage";
+export { default as Form } from "./Form/Form";

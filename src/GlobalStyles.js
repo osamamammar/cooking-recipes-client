@@ -71,6 +71,9 @@ img {
   min-height: 100vh;
 }
 
+.overflow-hidden{
+  overflow-x: clip;
+}
 `;
 
 export default GlobalStyles;
