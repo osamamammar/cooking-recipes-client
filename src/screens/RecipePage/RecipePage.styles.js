@@ -8,7 +8,7 @@ export const GridContainer = styled(SectionContainer)`
   align-items: flex-start;
   gap: 25px;
   margin-block-start: 12px;
-  @media (max-width: 907px) {
+  /* @media (max-width: 907px) {
     grid-template-columns: 1fr;
-  }
+  } */
 `;

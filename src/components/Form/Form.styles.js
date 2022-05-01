@@ -50,6 +50,15 @@ export const FormContainer = styled.form`
   }
 `;
 
+export const SubmitBtn = styled.button`
+  border: none;
+  background-color: #8d8d8d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+`;
+
 export const UploadImageLabel = styled.label`
   display: inline-flex;
   justify-content: center;
@@ -84,9 +93,4 @@ export const UplodedPicture = styled.div`
     height: 100%;
     object-fit: cover;
   }
-`;
-
-export const SubmitBtn = styled.button`
-  border: none;
-  background-color: #8d8d8d;
 `;

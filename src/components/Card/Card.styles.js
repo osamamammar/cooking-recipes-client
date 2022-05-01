@@ -8,6 +8,21 @@ export const StyledLink = styled(Link)`
   justify-content: flex-start;
   gap: 18px;
 
+  > button.delete-btn {
+    position: absolute;
+    inset-block-start: 15px;
+    inset-inline-end: 15px;
+    z-index: 999;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    display: none;
+  }
+  &:hover {
+    > button.delete-btn {
+      display: block;
+    }
+  }
   @media (max-width: 1105px) {
     position: relative;
     flex-direction: column;

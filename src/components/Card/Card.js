@@ -1,4 +1,5 @@
 import React from "react";
+import { deleteIcon } from "../../assets";
 import {
   CardDescription,
   CardTitle,
@@ -8,13 +9,33 @@ import {
   StyledLink,
 } from "./Card.styles";
 
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import { useDelete } from "../../hooks";
+
 const Card = ({ recipe }) => {
+  const id = recipe._id;
+  const path = "landingpage";
+  const { deleteRecipe, isDeleting, errorMessage } = useDelete({
+    id,
+    path,
+  });
   return (
     <>
+      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+
       <Recipe>
         <StyledLink to={`/recipe/${recipe._id}`}>
+          <button className="delete-btn" onClick={deleteRecipe}>
+            <img
+              src={deleteIcon}
+              alt="delete-icon"
+              width={25}
+              height={25}
+              className="delete-icon"
+            />
+          </button>
           <DishImage
-            src={`${process.env.REACT_APP_API_URL}/images/${recipe.image}`}
+            src={`${process.env.REACT_APP_API_URL}${recipe.dish_img}`}
             alt="dish image"
             width={300}
             height={200}

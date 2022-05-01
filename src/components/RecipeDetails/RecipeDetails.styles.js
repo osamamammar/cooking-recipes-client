@@ -4,8 +4,6 @@ export const DishImage = styled.img`
   object-fit: cover;
   align-self: stretch;
   width: 100%;
-  position: sticky;
-  inset-block-start: 20px;
   align-self: flex-start;
   border-radius: 10px;
   transition: 0.3s;
@@ -15,8 +13,11 @@ export const DishImage = styled.img`
   }
   @media (max-width: 907px) {
     position: unset;
-    max-height: 200px;
+    max-height: 330px;
     object-fit: cover;
+  }
+  @media (max-width: 908px) {
+    grid-column: 1/3;
   }
 `;
 export const RecipeContainer = styled.div`
@@ -25,10 +26,14 @@ export const RecipeContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 10px;
+
+  @media (max-width: 908px) {
+    grid-column: 1/3;
+  }
 `;
 
 export const RecipeTitle = styled.h3`
-  font-size: 38px;
+  font-size: 32px;
   font-weight: bold;
   transition: 0.3s ease-in-out;
   cursor: pointer;
@@ -55,4 +60,8 @@ export const RecipeDescription = styled.p`
   @media (max-width: 907px) {
     max-width: 100%;
   }
+`;
+
+export const RecipeDescriptionContainer = styled.div`
+  grid-column: 1/3;
 `;

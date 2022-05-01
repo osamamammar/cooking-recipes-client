@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { upload } from "../../assets";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
@@ -10,17 +9,54 @@ import {
   UploadImageLabel,
   UplodedPicture,
 } from "./Form.styles";
+import { useSelectedImage } from "../../hooks";
+import { submitIcon, upload } from "../../assets";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 const Form = ({ btnTitle, data, id }) => {
   const navigate = useNavigate();
-  const [selectedFile, setSelectedFile] = useState("");
-  const [preview, setPreview] = useState();
+
+  const { selectedFile, preview, setPreview, onSelectFile, imageBase64 } =
+    useSelectedImage();
+
   const [recipeName, setRecipeName] = useState("");
   const [recipeIngredients, setRecipeIngredients] = useState("");
   const [recipeDescription, setRecipeDescription] = useState("");
   const [errorMessageForm, setErrorMessageForm] = useState("");
   const [errorMessageUpload, setErrorMessageUpload] = useState("");
+  const [pictureUrl, setPictureUrl] = useState("");
+
+  useEffect(() => {
+    if (imageBase64) {
+      const url = imageBase64;
+      console.log(url);
+      fetch(url)
+        .then((res) => res.blob())
+        .then((blob) => {
+          var formData = new FormData();
+          formData.append("img", blob);
+
+          // Upload to server
+          const uploadImageToServer = async () => {
+            try {
+              let response = await fetch(
+                `${process.env.REACT_APP_API_URL}/upload`,
+                {
+                  method: "POST",
+                  body: formData,
+                }
+              );
+              const data = await response.json();
+              setPictureUrl(data && data.pictureUrl);
+            } catch (err) {
+              // Handle errors here
+              setErrorMessageUpload(err.response.data.message);
+            }
+          };
+          uploadImageToServer();
+        });
+    }
+  }, [imageBase64]);
 
   useEffect(() => {
     if (data) {
@@ -29,33 +65,10 @@ const Form = ({ btnTitle, data, id }) => {
       setRecipeIngredients(data.ingredients);
       setRecipeDescription(data.description);
     }
-  }, [data]);
-
-  // create a preview as a side effect, whenever selected file is changed
-  useEffect(() => {
-    if (!selectedFile) {
-      setPreview(undefined);
-      return;
-    }
-    const objectUrl = URL.createObjectURL(selectedFile);
-    setPreview(objectUrl);
-
-    // free memory when ever this component is unmounted
-    return () => URL.revokeObjectURL(objectUrl);
-  }, [selectedFile]);
-
-  const onSelectFile = async (e) => {
-    if (!e.target.files || e.target.files.length === 0) {
-      setSelectedFile(undefined);
-      return;
-    }
-    // select first image
-    setSelectedFile(e.target.files[0]);
-  };
+  }, [data, setPreview]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-
     const postData = async () => {
       try {
         const { data } = await axios.post(
@@ -63,17 +76,20 @@ const Form = ({ btnTitle, data, id }) => {
           {
             title: recipeName,
             description: recipeDescription,
-            dish_img: selectedFile,
+            dish_img: pictureUrl ? pictureUrl : "",
             ingredients: recipeIngredients,
           }
         );
         console.log(data);
+        navigate("/", { state: { success: "your recipe posted successfuly" } });
       } catch (error) {
         setErrorMessageForm(error.response.data.message);
       }
     };
+
     postData();
   };
+
   const submitUpdateHandler = (e) => {
     e.preventDefault();
     const putData = async () => {
@@ -83,45 +99,17 @@ const Form = ({ btnTitle, data, id }) => {
           {
             title: recipeName,
             description: recipeDescription,
-            dish_img: selectedFile,
+            dish_img: pictureUrl ? pictureUrl : "",
             ingredients: recipeIngredients,
           }
         );
         navigate(`/recipe/${id}`, { state: { success: data.message } });
-
-        console.log(data);
       } catch (error) {
         setErrorMessageForm(error.response.data.message);
       }
     };
     putData();
   };
-
-  useEffect(() => {
-    if (selectedFile) {
-      console.log(selectedFile);
-      let formData = new FormData();
-      formData.append("img", selectedFile);
-      const uploadPicture = async () => {
-        try {
-          const { data } = await axios.post(
-            `${process.env.REACT_APP_API_URL}/upload`,
-            formData,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            }
-          );
-          console.log(data);
-        } catch (error) {
-          console.log(error);
-          setErrorMessageUpload(error.response.data.message);
-        }
-      };
-      uploadPicture();
-    }
-  }, [selectedFile]);
 
   return (
     <FormContainer onSubmit={submitHandler}>
@@ -196,12 +184,14 @@ const Form = ({ btnTitle, data, id }) => {
       ></textarea>
 
       {!btnTitle ? (
-        <SubmitBtn type="submit" className="btn">
+        <SubmitBtn type="submit" className="btn" title="submit recipe">
           submit
+          <img src={submitIcon} alt="submit" />
         </SubmitBtn>
       ) : (
-        <SubmitBtn className="btn" onClick={submitUpdateHandler}>
+        <SubmitBtn className="btn" onClick={submitUpdateHandler} title="update recipe">
           Submit update
+          <img src={submitIcon} alt="submit" />
         </SubmitBtn>
       )}
     </FormContainer>

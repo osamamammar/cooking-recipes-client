@@ -1,32 +1,16 @@
 import React from "react";
 import { edit, trash } from "../../assets";
 import { DivWrapper } from "./CTABtn.styles";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import { useDelete } from "../../hooks";
 
 const CTABtn = ({ id }) => {
-  const navigate = useNavigate();
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
-  const deleteRecipe = async () => {
-    if (isDeleting) {
-      return;
-    }
-    try {
-      setIsDeleting(true);
-      const { data } = await axios.delete(
-        `${process.env.REACT_APP_API_URL}/recipe/${id}`
-      );
-      navigate("/", { state: { success: data.message } });
-      setIsDeleting(false);
-    } catch (error) {
-      setErrorMessage(error.response.data.message);
-      setIsDeleting(false);
-    }
-  };
+  const path = "recipe-details";
+  const { deleteRecipe, isDeleting, errorMessage } = useDelete({
+    id,
+    path,
+  });
   return (
     <>
       <DivWrapper>
