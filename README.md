@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# cooking-recipes-client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with 
 
-## Available Scripts
+[Create React App](https://github.com/facebook/create-react-app).
 
-In the project directory, you can run:
+[Link To Backend Repo](https://github.com/osamamammar/cooking-recipes-server).
 
-### `npm start`
+## screenshots
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<p align="center" id="#screens">
+  Desktop
+   <br></br>
+  <img alt="" src="https://i.ibb.co/Xbt7G7V/screencapture-cooking-recipes-client-herokuapp-2022-05-03-22-38-46.png" alt="screencapture-cooking-recipes-client-herokuapp-2022-05-03-22-38-46" width="" height="">
+</p>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<p align="center">
+  <img alt="" src="https://i.ibb.co/nzwW46h/screencapture-cooking-recipes-client-herokuapp-2022-05-03-22-40-34.png" width="20%" height="">
+  <img alt="" src="https://i.ibb.co/82VT6ZD/screencapture-cooking-recipes-client-herokuapp-recipe-627190bcbb1455dea6f3479b-2022-05-03-22-39-30.png" width="20%" height="">
+  <img alt="" src="https://i.ibb.co/p0vfHM9/screencapture-cooking-recipes-client-herokuapp-add-new-recipe-2022-05-03-22-14-03.png" width="20%" height="">
+  <img alt="" src="https://i.ibb.co/grkTZGQ/screencapture-cooking-recipes-client-herokuapp-2022-05-03-22-13-41.png" width="20%" height="">
+ </p>
+ 
+ <p align="center">
+ Mobile
+   <br></br>
+  <img alt="" src="https://i.ibb.co/gRVmHtK/screencapture-cooking-recipes-client-herokuapp-recipe-6271913dbb1455dea6f3479e-2022-05-03-22-42-19.png" width="25%" height="650">
+  <img alt="" src="https://i.ibb.co/bdJhFMf/screencapture-cooking-recipes-client-herokuapp-2022-05-03-22-40-49.png" width="25%" height="650">
+  </p>
+  
+  ## Run Locally
 
-### `npm test`
+Clone the project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+  git clone https://github.com/osamamammar/cooking-recipes-client.git
+```
 
-### `npm run build`
+Go to the project directory
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+  cd cooking-recipes-client
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Install dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+  npm install
+```
 
-### `npm run eject`
+Start the server
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+  npm run start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Environment Variables
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To run this project, you will need to add the following environment variables to your .env file
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+`REACT_APP_API_URL = https://cooking-recipes-server.herokuapp.com`
