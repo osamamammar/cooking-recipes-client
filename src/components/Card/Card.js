@@ -15,25 +15,39 @@ import { useDelete } from "../../hooks";
 const Card = ({ recipe }) => {
   const id = recipe._id;
   const path = "landingpage";
-  const { deleteRecipe, isDeleting, errorMessage } = useDelete({
+  const { deleteRecipe, errorMessage } = useDelete({
     id,
     path,
   });
+
   return (
     <>
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
 
       <Recipe>
+        <button
+          className="delete-btn"
+          onClick={deleteRecipe}
+          style={{
+            position: "absolute",
+            right: "0",
+            zIndex: "9999",
+            cursor: "pointer",
+            background: "transparent",
+            border: "none",
+            paddingBlock: "15px",
+            paddingInline: "15px",
+          }}
+        >
+          <img
+            src={deleteIcon}
+            alt="delete-icon"
+            width={25}
+            height={25}
+            className="delete-icon"
+          />
+        </button>
         <StyledLink to={`/recipe/${recipe._id}`}>
-          <button className="delete-btn" onClick={deleteRecipe}>
-            <img
-              src={deleteIcon}
-              alt="delete-icon"
-              width={25}
-              height={25}
-              className="delete-icon"
-            />
-          </button>
           <DishImage
             src={`${process.env.REACT_APP_API_URL}${recipe.dish_img}`}
             alt="dish image"

@@ -21,7 +21,7 @@ const useDelete = ({ id, path }) => {
         navigate("/", { state: { success: data.message } });
       } else if (path === "landingpage") {
         navigate("/", { state: { success: data.message } });
-        // window.location.reload();
+        window.location.reload();
       }
       setIsDeleting(false);
     } catch (error) {

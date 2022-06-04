@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { ErrorMessage, Form, Loader, MainWrapper } from "../../components";
 import { useAxiosFetch, useOverflow } from "../../hooks";
 import { useParams } from "react-router-dom";
 
 const EditRecipePage = () => {
+  const [UploadImgBtn, setUploadImgBtn] = useState(true);
+
   useOverflow();
   let { id } = useParams();
 
@@ -15,7 +17,12 @@ const EditRecipePage = () => {
     <MainWrapper marginBlockStart="40px" width="95%">
       <h2>Edit Recipe Page</h2>
       {data && !error && !loading ? (
-        <Form btnTitle={"Submit update"} data={data} id={id}></Form>
+        <Form
+          btnTitle={"Submit update"}
+          data={data}
+          id={id}
+          UploadImgBtn={UploadImgBtn}
+        ></Form>
       ) : loading ? (
         <Loader></Loader>
       ) : (

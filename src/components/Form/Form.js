@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   FormContainer,
   SubmitBtn,
@@ -13,7 +13,8 @@ import { useSelectedImage } from "../../hooks";
 import { submitIcon, upload } from "../../assets";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
-const Form = ({ btnTitle, data, id }) => {
+const Form = ({ btnTitle, data, id, UploadImgBtn }) => {
+  const location = useLocation();
   const navigate = useNavigate();
 
   const { selectedFile, preview, setPreview, onSelectFile, imageBase64 } =
@@ -25,6 +26,9 @@ const Form = ({ btnTitle, data, id }) => {
   const [errorMessageForm, setErrorMessageForm] = useState("");
   const [errorMessageUpload, setErrorMessageUpload] = useState("");
   const [pictureUrl, setPictureUrl] = useState("");
+  const { displayUploadImgBtn } = location.state || {
+    displayUploadImgBtn: false,
+  };
 
   useEffect(() => {
     if (imageBase64) {
@@ -40,7 +44,7 @@ const Form = ({ btnTitle, data, id }) => {
           const uploadImageToServer = async () => {
             try {
               let response = await fetch(
-                `${process.env.REACT_APP_API_URL}/upload`,
+                `${process.env.REACT_APP_API_URL}/upload/${id}`,
                 {
                   method: "POST",
                   body: formData,
@@ -56,12 +60,12 @@ const Form = ({ btnTitle, data, id }) => {
           uploadImageToServer();
         });
     }
-  }, [imageBase64]);
+  }, [imageBase64, id]);
 
   useEffect(() => {
     if (data) {
       setRecipeName(data.title);
-      setPreview(data && data.dish_img);
+      setPreview(`${process.env.REACT_APP_API_URL}${data && data.dish_img}`);
       setRecipeIngredients(data.ingredients);
       setRecipeDescription(data.description);
     }
@@ -81,7 +85,12 @@ const Form = ({ btnTitle, data, id }) => {
           }
         );
         console.log(data);
-        navigate("/", { state: { success: "your recipe posted successfuly" } });
+        navigate(`/recipe/${data._id}/edit`, {
+          state: {
+            success: "your recipe posted successfuly",
+            displayUploadImgBtn: true,
+          },
+        });
       } catch (error) {
         setErrorMessageForm(error.response.data.message);
       }
@@ -94,18 +103,19 @@ const Form = ({ btnTitle, data, id }) => {
     e.preventDefault();
     const putData = async () => {
       try {
-        const { data } = await axios.put(
+        const { data: dataUpdata } = await axios.put(
           `${process.env.REACT_APP_API_URL}/recipe/${id}`,
           {
             title: recipeName,
             description: recipeDescription,
-            dish_img: pictureUrl ? pictureUrl : "",
+            dish_img: pictureUrl ? pictureUrl : `${data.dish_img}`,
             ingredients: recipeIngredients,
           }
         );
-        navigate(`/recipe/${id}`, { state: { success: data.message } });
+
+        navigate(`/recipe/${id}`, { state: { success: dataUpdata.message } });
       } catch (error) {
-        setErrorMessageForm(error.response.data.message);
+        setErrorMessageForm(error.response.dataUpdata.message);
       }
     };
     putData();
@@ -114,15 +124,25 @@ const Form = ({ btnTitle, data, id }) => {
   return (
     <FormContainer onSubmit={submitHandler}>
       <UplodedPicture>
-        {selectedFile && (
-          <img src={preview} alt="dishImage" width={100} height={100} />
+        {(selectedFile || preview) && (
+          <img
+            src={preview}
+            alt="dishImage"
+            width={100}
+            height={100}
+            onError={(e) => {
+              e.target.src = `https://fooduncut.com/wp-content/uploads/2021/08/Chinese-Cooking-Hacks.jpg`;
+            }}
+          />
         )}
       </UplodedPicture>
 
-      <UploadImageLabel htmlFor="img" className="uploadImage">
-        Click to upload image
-        <img src={upload} alt="load-new-avatar" width={15} height={15} />
-      </UploadImageLabel>
+      {(displayUploadImgBtn || UploadImgBtn) && (
+        <UploadImageLabel htmlFor="img" className="uploadImage">
+          Click to upload image
+          <img src={upload} alt="load-new-avatar" width={15} height={15} />
+        </UploadImageLabel>
+      )}
 
       <input
         type="file"
@@ -189,7 +209,11 @@ const Form = ({ btnTitle, data, id }) => {
           <img src={submitIcon} alt="submit" />
         </SubmitBtn>
       ) : (
-        <SubmitBtn className="btn" onClick={submitUpdateHandler} title="update recipe">
+        <SubmitBtn
+          className="btn"
+          onClick={submitUpdateHandler}
+          title="update recipe"
+        >
           Submit update
           <img src={submitIcon} alt="submit" />
         </SubmitBtn>
